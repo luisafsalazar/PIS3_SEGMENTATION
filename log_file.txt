@@ -1,0 +1,76 @@
+<EasyDict 0x1ca7c6cc1e0
+  'data_root': 'S:\Users\Vlacho\Desktop\luisa\Slim-UNETR-nuevo\Slim-UNETR-main\image',
+  'finetune': <EasyDict 0x1ca7c6cc780
+    'checkpoint': 'hepatic_vessel'
+  >,
+  'slim_unetr': <EasyDict 0x1ca7c6cc730
+    'blocks': [1, 2, 3, 2],
+    'channels': [24, 48, 60],
+    'dropout': 0.3,
+    'embed_dim': 96,
+    'embedding_dim': 27,
+    'heads': [1, 2, 4, 4],
+    'in_channels': 1,
+    'out_channels': 2,
+    'r': [4, 2, 2, 1]
+  >,
+  'trainer': <EasyDict 0x1ca7c6cc5f0
+    'batch_size': 1,
+    'image_size': 96,
+    'lr': 0.001,
+    'min_lr': 1e-07,
+    'momentum_teacher': 0.996,
+    'num_epochs': 10,
+    'num_workers': 16,
+    'optimizer': 'adamw',
+    'pred_ratio_var': 0,
+    'resume': False,
+    'train_ratio': 0.8,
+    'warmup': 5,
+    'weight_decay': 0.05,
+    'weight_decay_end': 0.04
+  >
+>
+Load Model...
+Load Dataloader...
+monai.transforms.croppad.dictionary CropForegroundd.__init__:allow_smaller: Current default value of argument `allow_smaller=True` has been deprecated since version 1.2. It will be changed to `allow_smaller=False` in version 1.5.
+Start Training！
+Epoch [1/10] Training [1/3] Loss: 1.34246 
+Epoch [1/10] Training [2/3] Loss: 1.34478 
+Epoch [1/10] Training [3/3] Loss: 1.34391 
+Epoch [1/10] Training metric {'Train/mean dice_metric': 1.9246341253165156e-05, 'Train/Hepatic Vessel dice_metric': 1.1351577995810658e-05, 'Train/Tumors dice_metric': 2.7141104510519654e-05}
+Traceback (most recent call last):
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py", line 1131, in _try_get_data
+    data = self._data_queue.get(timeout=timeout)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\multiprocessing\queues.py", line 114, in get
+    raise Empty
+_queue.Empty
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "S:\Users\Vlacho\Desktop\luisa\Slim-UNETR-nuevo\Slim-UNETR-main\main.py", line 289, in <module>
+    mean_acc, batch_acc, val_step = val_one_epoch(
+                                    ^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "S:\Users\Vlacho\Desktop\luisa\Slim-UNETR-nuevo\Slim-UNETR-main\main.py", line 118, in val_one_epoch
+    for i, image_batch in enumerate(val_loader):
+                          ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\accelerate\data_loader.py", line 384, in __iter__
+    current_batch = next(dataloader_iter)
+                    ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py", line 630, in __next__
+    data = self._next_data()
+           ^^^^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py", line 1327, in _next_data
+    idx, data = self._get_data()
+                ^^^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py", line 1293, in _get_data
+    success, data = self._try_get_data()
+                    ^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\VLACHO\AppData\Local\Programs\Python\Python312\Lib\site-packages\torch\utils\data\dataloader.py", line 1144, in _try_get_data
+    raise RuntimeError(f'DataLoader worker (pid(s) {pids_str}) exited unexpectedly') from e
+RuntimeError: DataLoader worker (pid(s) 10060, 11796, 15036, 9716, 15352, 17356, 4932, 18508) exited unexpectedly
